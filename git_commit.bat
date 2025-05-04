@@ -1,1 +1,1 @@
-git pull && git add . && git commit -m"adventure" && git push
+git pull && git add . && git commit -m"fixes" && git push

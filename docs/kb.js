@@ -121,16 +121,17 @@ down :- go(down).
 right :- go(right).
 left :- go(left).
 
-go(Direction, Message) :-
-    i_am_at(Here),
-    path(Here, Direction, There, PathMessage),
-    retract(i_am_at(Here)),
-    assert(i_am_at(There)),
-    look(LookMessage),
-    format(string(Message), "~s~n~s", [PathMessage, LookMessage]),
-    !.
+/* This rule tells how to move in a given direction. */
 
-go(_, 'You can''t go that way.').
+go(Direction) :-
+    i_am_at(Here),
+    path(Here, Direction, There),
+    retract(i_am_at(Here)),
+    assertz(i_am_at(There)),
+    !, look.
+
+go(_) :-
+    write('You can''t go that way.').
 
 /* Inventory */
 i :-
@@ -154,7 +155,7 @@ take(X) :-
     i_am_at(Place),
     at(X, Place),
     retract(at(X, Place)),
-    assert(at(X, holding)),
+    assertz(at(X, holding)),
     (X == treasure ->
         write('CONGRATULATIONS!!! YOU HAVE THE TREASURE IN HAND. YOU WON!!'), nl, end_game
     ;
@@ -168,7 +169,7 @@ drop(X) :-
     at(X, holding),
     i_am_at(Place),
     retract(at(X, holding)),
-    assert(at(X, Place)),
+    assertz(at(X, Place)),
     write('OK.'), nl, !.
 drop(_) :-
     write('You don''t have it!'), nl.
@@ -178,7 +179,7 @@ use_lives :-
     lives(X),
     Y is X - 1,
     retract(lives(X)),
-    assert(lives(Y)),
+    assertz(lives(Y)),
     (Y =:= 1 -> write('Be careful. You just have 1 life left.'), nl ; true),
     (Y =:= 0 -> die ; true), nl.
 
@@ -187,7 +188,7 @@ go(Direction) :-
     i_am_at(Here),
     path(Here, Direction, There),
     retract(i_am_at(Here)),
-    assert(i_am_at(There)),
+    assertz(i_am_at(There)),
     !, look.
 go(_) :-
     write('You can''t go that way.'), nl.
@@ -209,12 +210,13 @@ end_game :-
     write('<< GAME HALTED >> Please type "start." to restart or "halt." to quit.'), nl.
 
 /* Look around */
-look(Message) :-
+look :-
     lives(X),
     i_am_at(Place),
-    describe(Place, Desc),
-    notice_objects_at(Place, Items),
-    format(string(Message), "~s~n~s~nYou have ~w lives.", [Desc, Items, X]).
+    describe(Place),
+    nl,
+    notice_objects_at(Place),nl,
+    write('You have '),write(X), write(' lives.'), nl.
 
 notice_objects_at(Place) :-
     at(X, Place),
@@ -227,7 +229,7 @@ find :-
     i_am_at(castle),
     at(blueprint, holding),
     \+ at(treasure, castle),
-    assert(at(treasure, castle)),
+    assertz(at(treasure, castle)),
     write('AMAZING!! You found the treasure.'), nl,
     write('Collect the treasure and finish the game.'), nl, !.
 find :-
