@@ -32,8 +32,6 @@ verb --> [saw].
     {
         title: "stefanrodrigues2's Adventure Game",
         program: `
-/* <The name of this game>, by <your name goes here>. */
-
 :- dynamic(i_am_at/1).
 :- dynamic(at/2).
 :- dynamic(holding/1).
