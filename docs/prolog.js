@@ -59,3 +59,12 @@ addEventListener('keydown', function (e) {
         runProlog();
     }
 });
+
+function saveToFile() {
+    var text = document.getElementById("program").value;
+    var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "knowledge_base.txt";
+    link.click();
+}
