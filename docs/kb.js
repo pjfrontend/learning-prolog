@@ -299,6 +299,6 @@ describe(tower) :-
 describe(tower) :-
     write('You are inside the tower.').
 `,
-        placeholder: 'i_am_at(X). go(up).',
+        placeholder: 'i_am_at(X). go(up). // messages will appear in the console',
     },
 ];
