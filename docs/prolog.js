@@ -21,6 +21,9 @@ function updateExample(index) {
     document.getElementById('title').textContent = 'Learning Prolog - '+ example.title;
     document.getElementById('program').value = example.program;
     document.getElementById('query').placeholder = example.placeholder;
+    // resetting values
+    document.getElementById('query').value = '';
+    document.getElementById('output').textContent = '';
 }
 
 function runProlog() {

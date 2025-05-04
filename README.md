@@ -41,7 +41,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## To Do:
 - [x] dropdown with examples
-- [ ] ~~save user created knowledge base to localStorage~~
+- [ ] ~~save user created knowledge base to localStorage~~ (This quickly got out of hand...)
 - [x] export user created knowledge base to a text file
 - [ ] have this project as a C program
 - [ ] have this project as a Python program
