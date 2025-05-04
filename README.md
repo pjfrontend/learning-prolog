@@ -14,6 +14,7 @@ Features:
 * No installation or setup required
 * Mobile-friendly interface
 * Designed for quick experimentation and learning
+* [A fully-fledged text adventure game by stefanrodrigues2](https://raw.githubusercontent.com/stefanrodrigues2/Prolog-Adventure-game/refs/heads/main/treasure_hunt.pl)
 
 ## 🚀 Getting Started
 
