@@ -13,7 +13,6 @@ window.onload = function () {
 };
 
 document.getElementById('exampleSelect').addEventListener('change', function () {
-    console.log(this)
     updateExample(this.value);
 });
 
