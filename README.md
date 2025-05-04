@@ -38,3 +38,10 @@ Contributions are welcome! Feel free to open issues, suggest features, or submit
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## To Do:
+- [ ] dropdown with examples
+- [ ] save user created knowledge base to localStorage
+- [ ] export user created knowledge base to a text file
+- [ ] have this project as a C program
+- [ ] have this project as a Python program
