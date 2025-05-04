@@ -30,7 +30,7 @@ verb --> [saw].
     },
     // https://github.com/stefanrodrigues2/Prolog-Adventure-game/blob/main/treasure_hunt.pl
     {
-        title: 'stefanrodrigues2\'s Adventure Game',
+        title: "stefanrodrigues2's Adventure Game",
         program: `
 /* <The name of this game>, by <your name goes here>. */
 
@@ -123,14 +123,16 @@ down :- go(down).
 right :- go(right).
 left :- go(left).
 
-go(Direction) :-
+go(Direction, Message) :-
     i_am_at(Here),
-    path(Here, Direction, There),
+    path(Here, Direction, There, PathMessage),
     retract(i_am_at(Here)),
     assert(i_am_at(There)),
-    !, look.
-go(_) :-
-    write('You can''t go that way.'), nl.
+    look(LookMessage),
+    format(string(Message), "~s~n~s", [PathMessage, LookMessage]),
+    !.
+
+go(_, 'You can''t go that way.').
 
 /* Inventory */
 i :-
@@ -209,12 +211,12 @@ end_game :-
     write('<< GAME HALTED >> Please type "start." to restart or "halt." to quit.'), nl.
 
 /* Look around */
-look :-
+look(Message) :-
     lives(X),
     i_am_at(Place),
-    describe(Place), nl,
-    notice_objects_at(Place), nl,
-    write('You have '), write(X), write(' lives.'), nl.
+    describe(Place, Desc),
+    notice_objects_at(Place, Items),
+    format(string(Message), "~s~n~s~nYou have ~w lives.", [Desc, Items, X]).
 
 notice_objects_at(Place) :-
     at(X, Place),
