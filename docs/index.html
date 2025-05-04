@@ -3,21 +3,25 @@
 <head>
   <title>Interactive Prolog with Tau Prolog</title>
   <script src="https://cdn.jsdelivr.net/npm/tau-prolog@0.3.2/modules/core.js"></script>
-  <script src="prolog.js"></script>
+  <script src="kb.js"></script>
+  <script src="prolog.js" defer></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
-    textarea, input { width: 100%; margin-top: 10px; }
+    textarea, input, select { width: 100%; margin-top: 10px; }
     #output { white-space: pre-wrap; background: #f0f0f0; padding: 10px; margin-top: 10px; }
   </style>
 </head>
 <body>
-  <h1>Prolog in the Browser (Tau Prolog)</h1>
+  <h1 id="title">Prolog in the Browser (Tau Prolog)</h1>
+
+  <label for="exampleSelect">Choose an Example:</label>
+  <select id="exampleSelect"></select>
 
   <label for="program">Knowledge Base (Prolog facts/rules):</label>
-  <textarea id="program" rows="6">likes(alice, pizza). likes(bob, sushi). likes(alice, chocolate).</textarea>
+  <textarea id="program" rows="6"></textarea>
 
   <label for="query">Query:</label>
-  <input id="query" type="text" placeholder="e.g., likes(alice, X).">
+  <input id="query" type="text" placeholder="">
 
   <button id="run" onclick="runProlog()">Run Query</button>
 
